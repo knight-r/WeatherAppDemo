@@ -4,8 +4,10 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_margin="4dp"
+    android:id="@+id/cv_hour"
     app:cardElevation="6dp"
     app:cardCornerRadius="10dp"
+    app:cardBackgroundColor="@color/purple_500"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
     <RelativeLayout
@@ -79,11 +81,10 @@
         <ImageView
             android:id="@+id/iv_info_icon"
             android:layout_below="@+id/tv_pressure"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
             android:padding="5dp"
             android:layout_centerHorizontal="true"
-            android:background="@drawable/ic_launcher_background"
             />
 
 

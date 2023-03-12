@@ -5,20 +5,42 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".activities.MainActivity">
+    <RadioGroup
+        android:id="@+id/radio_group"
+        android:layout_marginTop="200dp"
+        android:orientation="horizontal"
+        android:layout_marginStart="106dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        >
+   <RadioButton
+       android:id="@+id/rb_city_name"
+       android:text="City name"
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"/>
 
-   <EditText
-       android:id="@+id/et_search_city"
-       android:layout_width="200dp"
-       android:layout_height="50dp"
-       android:layout_centerHorizontal="true"
-       android:layout_marginTop="200dp"
-       android:hint="Enter the city name"
-       />
+    <RadioButton
+        android:id="@+id/rb_pincode"
+        android:layout_marginLeft="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Pincode" />
+    </RadioGroup>
+
+    <EditText
+        android:id="@+id/et_search"
+        android:layout_below="@+id/radio_group"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:hint="Enter "
+        android:layout_width="200dp"
+        android:layout_height="50dp"/>
+
      <Button
          android:id="@+id/searchButton"
          android:layout_width="wrap_content"
          android:layout_height="wrap_content"
-         android:layout_below="@+id/et_search_city"
+         android:layout_below="@+id/et_search"
          android:text="Fetch"
          android:layout_centerHorizontal="true"
         />

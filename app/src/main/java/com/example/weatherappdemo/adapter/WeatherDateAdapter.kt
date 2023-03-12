@@ -25,7 +25,7 @@ import com.example.weatherappdemo.model.Hour
 class WeatherDateAdapter(private val binding: ActivityShowWeatherPageBinding, private val forecastDayList: List<Forecastday>) : RecyclerView.Adapter<WeatherDateAdapter.ViewHolder>() {
     private var _context: Context? = null
     private lateinit var _binding: RowDateItemBinding
-
+    private var selectedPosition:Int =0
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
 
         _context = parent.context
@@ -34,7 +34,7 @@ class WeatherDateAdapter(private val binding: ActivityShowWeatherPageBinding, pr
         return ViewHolder(view)
     }
     @SuppressLint("ResourceAsColor")
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: ViewHolder, @SuppressLint("RecyclerView") position: Int) {
 //        holder.apply {
 //            _binding.tvDate.text = forecastDayList?.get(position)?.date
 //            _binding.tvDay.text = forecastDayList?.get(position)?.day.toString()
@@ -43,20 +43,29 @@ class WeatherDateAdapter(private val binding: ActivityShowWeatherPageBinding, pr
         holder.textViewDate.text = forecastDayList?.get(position)?.date
         holder.textViewAvgTemp.text =  forecastDayList?.get(position)?.day?.avgtemp_c.toString() + " °C"
         holder.textViewAvgWS.text =  forecastDayList?.get(position)?.day?.avgvis_km.toString() + " km/h"
-        holder.cardView.setCardBackgroundColor(R.color.teal_200)
+
         holder.imageViewIcon.load( "https://" + forecastDayList.get(position).hour.get(0).condition.icon) {
             crossfade(true)
             placeholder(R.drawable.ic_launcher_foreground)
             transformations(CircleCropTransformation())
         }
         holder.itemView.setOnClickListener{
-
+            selectedPosition = position
             val hourList: List<Hour> = forecastDayList[position].hour.reversed()
-            holder.cardView.setCardBackgroundColor(R.color.white)
             binding?.rvHourInfo?.apply {
+
                 layoutManager = LinearLayoutManager(_context)
                 adapter = WeatherHourAdapter(hourList)
             }
+            notifyDataSetChanged()
+
+        }
+
+        if(selectedPosition == position) {
+            holder.cardViewDate.setBackgroundResource(R.drawable.round_edge_item)
+        }else {
+            holder.cardViewDate.setBackgroundResource(R.drawable.item_change_color)
+
 
         }
     }
@@ -70,6 +79,6 @@ class WeatherDateAdapter(private val binding: ActivityShowWeatherPageBinding, pr
         val textViewAvgTemp: TextView = itemView.findViewById(R.id.tv_avg_temp)
         val textViewAvgWS: TextView = itemView.findViewById(R.id.tv_avg_wind_speed)
         val imageViewIcon: ImageView = itemView.findViewById(R.id.iv_icon)
-        val cardView: CardView = itemView.findViewById(R.id.cv_date)
+        val cardViewDate: CardView = itemView.findViewById(R.id.cv_date)
     }
 }

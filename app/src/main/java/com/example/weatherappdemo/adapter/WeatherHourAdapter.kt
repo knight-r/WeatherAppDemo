@@ -1,11 +1,13 @@
 package com.example.weatherappdemo.adapter
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import coil.transform.CircleCropTransformation
@@ -20,8 +22,8 @@ class WeatherHourAdapter(private val forecastHourList: List<Hour>) : RecyclerVie
         return ViewHolder(view)
     }
 
+    @SuppressLint("ResourceAsColor")
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-
         holder.textViewTime.text = forecastHourList?.get(position)?.time.toString()
         holder.textViewTemp.text = "Temperature: " + forecastHourList?.get(position)?.temp_c.toString() + " C"
         holder.textViewFL.text = "Temperature Feels Like: " + forecastHourList?.get(position)?.feelslike_c.toString()+ " C"
@@ -49,6 +51,7 @@ class WeatherHourAdapter(private val forecastHourList: List<Hour>) : RecyclerVie
         val textViewWS: TextView = itemView.findViewById(R.id.tv_info_wind_speed)
         val textViewWD: TextView = itemView.findViewById(R.id.tv_wind_dir)
         val textViewPressure: TextView = itemView.findViewById(R.id.tv_pressure)
+        val cardViewHour: CardView = itemView.findViewById(R.id.cv_hour)
 
 
 
