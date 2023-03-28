@@ -30,14 +30,14 @@ class ShowWeatherPage : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         _binding = ActivityShowWeatherPageBinding.inflate(layoutInflater)
         setContentView(_binding.root)
-       val bundle :Bundle ?=intent.extras
+       val bundle :Bundle? = intent?.extras
        _binding.tvCityName.text = "No Data Found"
 
        bundle?.let {
 
            var inputType = it.getInt("input_type", 1)
            var inputData = it.getString("input_data")
-           Log.e("Ayush#1", inputType.toString())
+
            if (inputType.toString() == CITY_NAME)  {
                _binding.tvCityName.text = inputData
                inputData?.let {
